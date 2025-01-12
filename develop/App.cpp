@@ -10,10 +10,10 @@ using namespace std;
 string word_list[8] = {"a", "b", "c", "d", "e", "f", "g", "h"};
 int number_list[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
 
-int x_white_king, y_white_king, x_black_elephant, y_black_elephant, x_black_rook, y_black_rook, 
+int x_white_king, y_white_king, x_black_bishop, y_black_bishop, x_black_rook, y_black_rook, 
 	x_black_queen, y_black_queen, x_black_knight, y_black_knight;
 
-int check_elephant(int x1, int y1, int x2, int y2) {
+int check_bishop(int x1, int y1, int x2, int y2) {
 	if (x1 + y1 == x2 + y2 || x1 - y1 == x2 - y2) 
 	{
 		return 0;
@@ -48,11 +48,11 @@ int check_queen(int x1, int y1, int x2, int y2)
 }
 
 int overlapped_figures(string figures) {
-	if (figures == "elephant") {
-		if (y_black_elephant > y_white_king) {
-			if (x_black_elephant > x_white_king) {
-				int y = x_black_elephant + 1;
-				for (int i = y_black_elephant; i >= y_white_king; i--) {
+	if (figures == "bishop") {
+		if (y_black_bishop > y_white_king) {
+			if (x_black_bishop > x_white_king) {
+				int y = x_black_bishop + 1;
+				for (int i = y_black_bishop; i >= y_white_king; i--) {
 					y -= 1;
 					if (i == y_black_rook && y == x_black_rook) {
 						return 1;
@@ -66,8 +66,8 @@ int overlapped_figures(string figures) {
 				}
 			}
 			else {
-				int y = x_black_elephant - 1;
-				for (int i = y_black_elephant; i >= y_white_king; i--) {
+				int y = x_black_bishop - 1;
+				for (int i = y_black_bishop; i >= y_white_king; i--) {
 					y += 1;
 					if (i == y_black_rook && y == x_black_rook) {
 						return 1;
@@ -82,9 +82,9 @@ int overlapped_figures(string figures) {
 			}
 		}
 		else {
-			if (x_black_elephant > x_white_king) {
-				int y = x_black_elephant + 1;
-				for (int i = y_black_elephant; i <= y_white_king; i++) {
+			if (x_black_bishop > x_white_king) {
+				int y = x_black_bishop + 1;
+				for (int i = y_black_bishop; i <= y_white_king; i++) {
 					y -= 1;
 					if (i == y_black_rook && y == x_black_rook) {
 						return 1;
@@ -98,8 +98,8 @@ int overlapped_figures(string figures) {
 				}
 			}
 			else {
-				int y = x_black_elephant - 1;
-				for (int i = y_black_elephant; i <= y_white_king; i++) {
+				int y = x_black_bishop - 1;
+				for (int i = y_black_bishop; i <= y_white_king; i++) {
 					y += 1;
 					if (i == y_black_rook && y == x_black_rook) {
 						return 1;
@@ -120,7 +120,7 @@ int overlapped_figures(string figures) {
 		if (y_black_rook == y_white_king) {
 			if (x_black_rook > x_white_king) {
 				for (int i = x_black_rook; i >= x_white_king; i--) {
-					if (i == x_black_elephant && y_black_rook == y_black_elephant) {
+					if (i == x_black_bishop && y_black_rook == y_black_bishop) {
 						return 1;
 					}
 					else if (i == x_black_knight && y_black_rook == y_black_knight) {
@@ -133,7 +133,7 @@ int overlapped_figures(string figures) {
 			}
 			else {
 				for (int i = x_black_rook; i <= x_white_king; i++) {
-					if (i == x_black_elephant && y_black_rook == y_black_elephant) {
+					if (i == x_black_bishop && y_black_rook == y_black_bishop) {
 						return 1;
 					}
 					else if (i == x_black_knight && y_black_rook == y_black_knight) {
@@ -148,7 +148,7 @@ int overlapped_figures(string figures) {
 		else {
 			if (y_black_rook > y_white_king) {
 				for (int i = y_black_rook; i >= y_white_king; i--) {
-					if (i == y_black_elephant && x_black_rook == x_black_elephant) {
+					if (i == y_black_bishop && x_black_rook == x_black_bishop) {
 						return 1;
 					}
 					else if (i == y_black_knight && x_black_rook == x_black_knight) {
@@ -161,7 +161,7 @@ int overlapped_figures(string figures) {
 			}
 			else {
 				for (int i = y_black_rook; i <= y_white_king; i++) {
-					if (i == y_black_elephant && x_black_rook == x_black_elephant) {
+					if (i == y_black_bishop && x_black_rook == x_black_bishop) {
 						return 1;
 					}
 					else if (i == y_black_knight && x_black_rook == x_black_knight) {
@@ -180,7 +180,7 @@ int overlapped_figures(string figures) {
 		if (y_black_queen == y_white_king) {
 			if (x_black_queen > x_white_king) {
 				for (int i = x_black_queen; i >= x_white_king; i--) {
-					if (i == x_black_elephant && y_black_queen == y_black_elephant) {
+					if (i == x_black_bishop && y_black_queen == y_black_bishop) {
 						return 1;
 					}
 					else if (i == x_black_knight && y_black_queen == y_black_knight) {
@@ -193,7 +193,7 @@ int overlapped_figures(string figures) {
 			}
 			else {
 				for (int i = x_black_queen; i <= x_white_king; i++) {
-					if (i == x_black_elephant && y_black_queen == y_black_elephant) {
+					if (i == x_black_bishop && y_black_queen == y_black_bishop) {
 						return 1;
 					}
 					else if (i == x_black_knight && y_black_queen == y_black_knight) {
@@ -208,7 +208,7 @@ int overlapped_figures(string figures) {
 		else if (x_black_queen == x_white_king) {
 			if (y_black_queen > y_white_king) {
 				for (int i = y_black_queen; i >= y_white_king; i--) {
-					if (i == y_black_elephant && x_black_queen == x_black_elephant) {
+					if (i == y_black_bishop && x_black_queen == x_black_bishop) {
 						return 1;
 					}
 					else if (i == y_black_knight && x_black_queen == x_black_knight) {
@@ -221,7 +221,7 @@ int overlapped_figures(string figures) {
 			}
 			else {
 				for (int i = y_black_queen; i <= y_white_king; i++) {
-					if (i == y_black_elephant && x_black_queen == x_black_elephant) {
+					if (i == y_black_bishop && x_black_queen == x_black_bishop) {
 						return 1;
 					}
 					else if (i == y_black_knight && x_black_queen == x_black_knight) {
@@ -244,7 +244,7 @@ int overlapped_figures(string figures) {
 					else if (i == y_black_knight && y == x_black_knight) {
 						return 1;
 					}
-					else if (i == y_black_elephant && y == x_black_elephant) {
+					else if (i == y_black_bishop && y == x_black_bishop) {
 						return 1;
 					}
 				}
@@ -259,7 +259,7 @@ int overlapped_figures(string figures) {
 					else if (i == y_black_knight && y == x_black_knight) {
 						return 1;
 					}
-					else if (i == y_black_elephant && y == x_black_elephant) {
+					else if (i == y_black_bishop && y == x_black_bishop) {
 						return 1;
 					}
 				}
@@ -276,7 +276,7 @@ int overlapped_figures(string figures) {
 					else if (i == y_black_knight && y == x_black_knight) {
 						return 1;
 					}
-					else if (i == y_black_elephant && y == x_black_elephant) {
+					else if (i == y_black_bishop && y == x_black_bishop) {
 						return 1;
 					}
 				}
@@ -291,7 +291,7 @@ int overlapped_figures(string figures) {
 					else if (i == y_black_knight && y == x_black_knight) {
 						return 1;
 					}
-					else if (i == y_black_elephant && y == x_black_elephant) {
+					else if (i == y_black_bishop && y == x_black_bishop) {
 						return 1;
 					}
 				}
@@ -344,8 +344,8 @@ int main() {
 	y_white_king = a.second;
 
 	std::pair<int, int> b = figure_location("чёрного слона");
-	x_black_elephant = b.first;
-	y_black_elephant = b.second;
+	x_black_bishop = b.first;
+	y_black_bishop = b.second;
 
 	std::pair<int, int> c = figure_location("чёрной ладьи");
 	x_black_rook = c.first;
@@ -359,13 +359,13 @@ int main() {
 	x_black_queen = e.first;
 	y_black_queen = e.second;
 
-	int fe = check_elephant(x_white_king, y_white_king, x_black_elephant, y_black_elephant);
+	int fe = check_bishop(x_white_king, y_white_king, x_black_bishop, y_black_bishop);
 	int fr = check_rook(x_white_king, y_white_king, x_black_rook, y_black_rook);
 	int fk = check_knight(x_white_king, y_white_king, x_black_knight, y_black_knight);
 	int fq = check_queen(x_white_king, y_white_king, x_black_queen, y_black_queen);
 
 	if (fe == 0) {
-		fe = overlapped_figures("elephant");
+		fe = overlapped_figures("bishop");
 	}
 
 	if (fr == 0) {
